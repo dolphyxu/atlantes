@@ -628,8 +628,9 @@ def read_geojson_and_convert_coordinates() -> Tuple[np.ndarray, np.ndarray]:
             "/ais/src/atlantes/data/latest_marine_infrastructure.geojson"
         )
     else:
-        # Assume local environment, set relative path
-        marine_file = Path("src/atlantes/data/latest_marine_infrastructure.geojson")
+        # Assume local environment, use absolute path from module location
+        current_dir = Path(__file__).parent
+        marine_file = current_dir / "data/latest_marine_infrastructure.geojson"
 
     with open(marine_file, "r") as f:
         geojson_data = json.load(f)
